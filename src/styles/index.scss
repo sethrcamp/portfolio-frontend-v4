@@ -1,0 +1,15 @@
+$sidePadding: 50px;
+$pagePadding: 50px 300px 0 300px;
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+
+}
+
+.pageContainer {
+  padding: $pagePadding;
+}
