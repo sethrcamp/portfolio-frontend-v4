@@ -1,0 +1,76 @@
+@mixin X-Large {
+  @media screen and (min-width: 1200px){
+    @content
+  }
+}
+
+@mixin Large {
+  @media screen and (min-width: 992px) and (max-width: 1200px) {
+    @content
+  }
+}
+
+@mixin Medium {
+  @media screen and (min-width: 768px) and (max-width: 992px) {
+    @content
+  }
+}
+
+@mixin Small {
+  @media screen and (min-width: 480px) and (max-width: 768px) {
+    @content
+  }
+}
+
+@mixin X-Small {
+  @media screen and (max-width: 480px) {
+    @content
+  }
+}
+
+$desktopBreakpoint: 770px;
+
+:export {
+  $desktopBreakpoint: #{$desktopBreakpoint};
+}
+
+@mixin isMobile {
+  @media screen and (max-width: $desktopBreakpoint) {
+    @content
+  }
+}
+
+@mixin isDesktop {
+  @media screen and (min-width: $desktopBreakpoint) {
+    @content
+  }
+}
+
+@mixin desktop($property, $xs, $s, $m, $l, $xl) {
+  @include isDesktop {
+    @include X-Large { #{$property}: $xl }
+    @include Large { #{$property}: $l }
+    @include Medium { #{$property}: $m }
+    @include Small { #{$property}: $s }
+    @include X-Small { #{$property}: $xs }
+  }
+}
+
+@mixin mobile($property, $xs, $s, $m, $l, $xl) {
+  @include isMobile {
+    @include X-Large { #{$property}: $xl }
+    @include Large { #{$property}: $l }
+    @include Medium { #{$property}: $m }
+    @include Small { #{$property}: $s }
+    @include X-Small { #{$property}: $xs }
+  }
+}
+
+@mixin all($property, $xs, $s, $m, $l, $xl) {
+  @include X-Large { #{$property}: $xl }
+  @include Large { #{$property}: $l }
+  @include Medium { #{$property}: $m }
+  @include Small { #{$property}: $s }
+  @include X-Small { #{$property}: $xs }
+}
+

@@ -1,15 +1,34 @@
-$sidePadding: 50px;
-$pagePadding: 50px 300px 0 300px;
+@use "fonts";
+@use "colors";
+@use "breakpoints";
 
 body {
   margin: 0;
   padding: 0;
 }
 
+#main-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+main {
+  padding-top: 50px;
+  max-width: 90%;
+  @include breakpoints.all(width, 420px, 475px, 600px, 700px, 800px);
+  background-color: green;
+}
+
 h1 {
-
+  font-family: fonts.$solitreo;
+  color: colors.$orange;
+  font-size: 24pt;
+  -webkit-text-stroke: 1px colors.$orange;
+  letter-spacing: 1px;
+  padding: 0;
+  margin: 0;
 }
 
-.pageContainer {
-  padding: $pagePadding;
-}

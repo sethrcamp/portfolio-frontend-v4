@@ -10,11 +10,11 @@ import {createBrowserRouter} from "react-router-dom";
 import Error404 from "./pages/404";
 
 const Layout = () => {
-    return <div>
+    return <div id='main-layout'>
         <Header />
-        <div className='pageContainer'>
+        <main>
             <Outlet />
-        </div>
+        </main>
     </div>;
 };
 

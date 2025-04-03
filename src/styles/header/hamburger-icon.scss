@@ -1,0 +1,82 @@
+@use "../colors";
+
+$pattyHoverRotation: 3deg;
+$pattyBoxShadow0: 1px 2px 0 1px colors.$black;
+$pattyBoxShadow45: -1px -2px 0 1px colors.$black;
+
+$pattyAnimationDuration: .5s;
+
+
+@keyframes patty-1-fall {
+  0% { transform: translateY(0px) translateX(0px) rotate(-3deg); box-shadow: none; }
+  10% { transform: translateY(9px) translateX(2px) rotate(-23deg); box-shadow: none; }
+  20% { transform: translateY(17.5px) translateX(4px) rotate(-43.5deg); box-shadow: none; }
+  50% { transform: translateY(35px) translateX(5px) rotate(-95deg); box-shadow: none; }
+  85% {
+    transform: translateY(25px) translateX(1px) rotate(-125deg);
+    box-shadow: $pattyBoxShadow45;
+  }
+  100% {
+    transform: translateY(19.5px) translateX(0px) rotate(-135deg);
+    box-shadow: $pattyBoxShadow45;
+  }
+}
+
+@keyframes patty-3-fall {
+  0% { transform: rotate(-$pattyHoverRotation); box-shadow: none; }
+  100% { transform: rotate(-205deg); box-shadow: $pattyBoxShadow45; }
+}
+
+#hamburger-icon {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  section {
+    background-color: colors.$white;
+    border-radius: 6px;
+    height: 11px;
+    width: 100%;
+    box-shadow: $pattyBoxShadow0;
+    user-select: none;
+  }
+
+  &:not(.isOpen):hover {
+    section {
+      transition-duration: .5s;
+      transition-timing-function: linear;
+    }
+
+    #hamburger-patty-1 {
+      transform: rotate(-$pattyHoverRotation);
+    }
+
+    #hamburger-patty-2 {
+      transform: rotate($pattyHoverRotation);
+    }
+
+    #hamburger-patty-3 {
+      transform: rotate(-$pattyHoverRotation);
+    }
+  }
+
+  &.isOpen {
+    #hamburger-patty-1 {
+      z-index: 3;
+      animation-name: patty-1-fall;
+      animation-duration: $pattyAnimationDuration;
+      animation-fill-mode: forwards;
+      animation-timing-function: linear;
+    }
+
+    #hamburger-patty-2 {
+      transform: rotate(225deg);
+      transition-duration: $pattyAnimationDuration;
+      transition-timing-function: ease-in-out;
+      box-shadow: $pattyBoxShadow45;
+    }
+  }
+}
